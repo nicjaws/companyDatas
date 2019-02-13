@@ -10,16 +10,35 @@ app.get('/', (req,res) => {
    res.send('Todo Listo') 
 })
 
-// el resolver = respuesta
-const root = {client: () => {
-   return {
-      "id": 112129318297,
-      "name": "Nico",
-      "surname": "Corbalan",
-      "company": "Shalala",
-      "email": "nicolas@example.com"
+class Client {
+   constructor(id, { name, surname, company, email }){
+      this.id = id;
+      this.name = name;
+      this.surname = surname;
+      this.company = company;
+      this.email = email;
    }
-}};
+}
+
+const clientsDB = {};
+
+// el resolver = respuesta
+const root = {
+   client: () => {
+      return {
+         "id": 112129318297,
+         "name": "Nico",
+         "surname": "Corbalan",
+         "company": "Shalala",
+         "emails": "nicolas@example.com"
+         }
+      },
+      createClient : ({input}) => {
+         const id = require('crypto').randomBytes(10).toString('hex');
+         clientsDB[id] = input;
+         return new Client(id, input)
+      }
+};
 
 app.use('/graphql', graphqlHTTP({
    // que schema va a utilizar
