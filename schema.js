@@ -10,8 +10,9 @@ const schema = buildSchema(`
     }
 
     type Query {
-        client: Client
+        getClient(id :ID) : Client
     }
+    
     input ClientInput {
         id: ID
         name: String!
