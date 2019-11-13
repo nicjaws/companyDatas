@@ -1,6 +1,6 @@
 
 class Client {
-    constructor(id, { name, surname, company, email, age, type }){
+    constructor(id, { name, surname, company, email, age, type, orders }){
        this.id = id;
        this.name = name;
        this.surname = surname;
@@ -8,6 +8,7 @@ class Client {
        this.email = email;
        this.age = age; 
        this.type = type;
+       this.orders = orders; 
     }
  }
  
