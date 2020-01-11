@@ -1,0 +1,57 @@
+type Client {
+  id: ID
+  name: String
+  lastname: String
+  company: String
+  emails: [Email]
+  age: Int
+  type: TypeClient
+  orders: [Order]
+}
+type Email {
+  email: String
+}
+type Query {
+  getClient(id: ID): Client
+}
+type Order {
+  product: String
+  price: Int
+}
+"""
+ Asign client´s category
+"""
+enum TypeClient {
+  BASIC
+  PREMIUM
+}
+input OrderInput {
+  product: String
+  price: Int
+}
+input EmailInput {
+  email: String
+}
+"""
+ Fields to new clients
+"""
+input ClientInput {
+  id: ID
+  name: String!
+  lastname: String!
+  company: String!
+  emails: [EmailInput]
+  age: Int!
+  type: TypeClient!
+  orders: [OrderInput]
+}
+"""
+ Mutation to create new clients
+"""
+type Mutation {
+  #Name of Resolver, Input with datas and value in return
+  """
+   Allow to create new clients
+  """
+  createClient(input: ClientInput): Client
+}
