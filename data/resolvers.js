@@ -19,7 +19,7 @@ import {Clients} from './db'
             type : input.type,
             orders : input.orders
          })
-         newClient.id = newClient_id;
+         newClient.id = newClient._id;
 
          return new Promise((resolve, object) => {
             newClient.save((err) => {

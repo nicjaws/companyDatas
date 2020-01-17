@@ -1,6 +1,6 @@
 import mongoose, { mongo } from 'mongoose';
 
-mongoose.Promise = global.promise;
+mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/clients', {useNewUrlParser: true});
 
