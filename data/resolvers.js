@@ -1,30 +1,35 @@
+import mongoose from 'mongoose';
+import {Clients} from './db'
+ 
+ 
+ export const resolvers = {
+    Query: {
+      getClient : ({id}) => {
+         return new Client(id, clientsDB[id]);
+     }
+    },
+    Mutation: {
+      createClient : (root, {input}) => {
+         const newClient = new Clients({
+            name : input.name,
+            lastname : input.lastname,
+            company : input.company,
+            emails : input.emails,
+            age : input.age, 
+            type : input.type,
+            orders : input.orders
+         })
+         newClient.id = newClient_id;
 
-class Client {
-    constructor(id, { name, lastname, company, emails, age, type, orders }){
-       this.id = id;
-       this.name = name;
-       this.lastname = lastname;
-       this.company = company;
-       this.emails = emails;
-       this.age = age; 
-       this.type = type;
-       this.orders = orders; 
+         return new Promise((resolve, object) => {
+            newClient.save((err) => {
+               if(err) rejects(err)
+               else resolve(newClient)
+            })
+         })     
+      }
     }
  }
- 
- const clientsDB = {};
- 
- // el resolver = respuesta
- const resolvers = {
-        getClient : ({id}) => {
-            return new Client(id, clientsDB[id]);
-        },
-       createClient : ({input}) => {
-          const id = require('crypto').randomBytes(10).toString('hex');
-          clientsDB[id] = input;
-          return new Client(id, input)
-       }
- };
 
- export default resolvers;
+
 
