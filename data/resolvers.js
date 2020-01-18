@@ -27,6 +27,14 @@ import {Clients} from './db'
                else resolve(newClient)
             })
          })     
+      },
+      updateClient: (root, {input}) => {
+         return new Promise((resolve, object) => {
+            Clients.findOneAndUpdate({_id : input.id}, input, {new: true}, (err, client) => {
+               if(err) rejects(err)
+               else resolve(client)
+            });
+         });
       }
     }
  }

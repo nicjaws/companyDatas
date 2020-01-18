@@ -19,7 +19,7 @@ type Order {
   price: Int
 }
 """
- Asign client´s category
+Asign client´s category
 """
 enum TypeClient {
   BASIC
@@ -33,7 +33,7 @@ input EmailInput {
   email: String
 }
 """
- Fields to new clients
+Fields to new clients
 """
 input ClientInput {
   id: ID
@@ -46,12 +46,13 @@ input ClientInput {
   orders: [OrderInput]
 }
 """
- Mutation to create new clients
+Mutation to create new clients
 """
 type Mutation {
   #Name of Resolver, Input with datas and value in return
   """
-   Allow to create new clients
+  Allow to create new clients
   """
   createClient(input: ClientInput): Client
+  updateClient(input: ClientInput): Client
 }
