@@ -35,6 +35,14 @@ import {Clients} from './db'
                else resolve(client)
             });
          });
+      },
+      deleteClient: (root, {id} ) => {
+         return new Promise((resolve, object) => {
+            Clients.findOneAndRemove({_id: id}, (err) => {
+               if(err) rejects(err)
+               else resolve("Correctly deleted")
+            })
+         }); 
       }
     }
  }
